@@ -35,17 +35,15 @@
 </div>
 
 
-
-
-
 <div class="m-5">
-    <form method="post" class="w-50 m-auto shadow-lg p-5 bg-white rounded">
+    <form method="post" class="m-auto shadow-lg p-5 bg-white rounded" style="width: 100%; max-width: 600px;">
         <h1>Comment</h1>
         {% csrf_token %}
         {% load crispy_forms_tags %}
-        {{form|crispy}}
-        <button class="btn btn-success">Submit</button>
+        {{ form|crispy }}
+        <button class="btn btn-success w-100">Submit</button>
     </form>
-</div>  
+</div>
+
 
 {% endblock content %}
