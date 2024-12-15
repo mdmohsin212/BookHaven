@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="d-flex flex-wrap px-3 pt-4 align-items-center">
+    <div class="col-md-6 col-12 order-2 order-md-1 text-md-start">
+        <p class="p-1">
+            <b>Welcome to BookHaven!</b>  
+            your ultimate destination for discovering and exploring the world of books. Whether you're seeking captivating fiction, thought-provoking non-fiction, or anything in between, we’ve got something for every reader. Our curated selection includes a wide range of genres, from mystery and romance to science fiction, fantasy, and more. Dive into detailed book reviews, author insights, and exclusive content that enhances your reading experience. Whether you’re looking for your next great read or need recommendations tailored to your interests, our platform is designed to connect you with the perfect books. Stay updated with the latest releases, bestseller lists, and community discussions to keep your literary journey fresh and exciting. Join a community of book lovers, share your thoughts, and discover stories that inspire, educate, and entertain. With BookHaven, your next adventure is just a page away.
+        </p>
+    </div>
+    <div class="col-md-6 col-12 order-1 order-md-2 text-center">
+        <img src="{% static 'cover.png' %}" alt="Roadvibe" class="w-100 img-fluid">
+    </div>
+</div>
+
+<h3 class="text-center fs-1 pt-4">Products</h3><hr class="mx-5">
+
+<div class="text-center flex-wrap py-2">
+    <a class="btn btn-outline-dark m-2" href="{% url "home" %}">All</a>
+    {% for i in catagory %}
+    <a class="btn btn-outline-dark m-2" href="{% url "category_slug" i.slug %}">{{i.category}}</a>
+    {% endfor %}
+</div>
+
+<h4 class="text-center">Total Result : {{data|length}} </h4>
+
+<div class="d-flex flex-wrap justify-content-center gap-4 m-md-4">
+    {% for i in data %}
+    <div class="card col-md-3 col-sm-12 m-2">
+        <img src="{{ i.image.url }}" class="card-img-top h-75" alt="...">
+        <div div class="card-body">
+            <p class="card-title text-center">Name : <b>{{i.name}}</b></p>
+            <p class="text-center">Category : {% for j in i.category.all %}
+            <button class="btn btn-primary btn-sm" disabled>{{j.category}}</button>
+            {% endfor %}</p>
+            <p class="card-title text-center">Price : $ <b>{{i.price}}</b></p><hr>
+            <b class="text-center">{{ i.des | truncatewords:10 }}</b>
+            <div class="text-center">
+            <a class="btn btn-dark m-2" href ="{% url "book_deatils" i.id %}">Details</a>
+            {% if request.user.is_authenticated %}
+                <a class="btn btn-dark m-2" href="{% url "Buy" i.id %}">Buy</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+{% endblock content %}

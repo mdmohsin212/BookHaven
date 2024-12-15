@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Profile</title>
+{% endblock title %}
+
+
+{% block content %}
+
+
+<h1 class="text-center">Profile</h1>
+<div class="w-50 m-auto border border-3 rounded p-3">
+    <p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><b>Email:</b> {{ user.email }}</p>
+    <p><b>Username:</b> {{ user.username }}</p>
+</div>
+
+
+{% if data %}
+  <div class="text-gray-900 bg-gray-200 m-9">
+    <div class="p-4">
+        <h1 class="display-6 text-center">
+            You'r All Books
+        </h1>
+    </div>
+    <div class="px-3 py-4 d-flex justify-content-center">
+        <table class="table table-bordered bg-white shadow-sm rounded mb-4">
+            <tbody>
+                <tr class="table-dark">
+                    <th class="text-start py-3 px-5">Id</th>
+                    <th class="text-start py-3 px-5">Name</th>
+                    <th class="text-start py-3 px-5">Price</th>
+                    <th class="text-start py-3 px-5">Balance</th>
+                    <th class="text-start py-3 px-5">Return</th>
+                </tr>
+                {% for i in data %}
+                <tr class="bg-secondary text-white">
+                    <td class="py-3 px-5">{{ forloop.counter }}</td>
+                    <td class="py-3 px-5">{{i.name}}</td>
+                    <td class="py-3 px-5">${{i.price}}</td>
+                    <td class="py-3 px-5">{{ request.user.account.first.balance }}</td>
+                    <td class="py-3 px-5">
+                        <a href="{% url "Return" i.id %}" class="btn btn-danger btn-sm">Return</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+
+{% endif %}
+
+
+{% endblock content %}

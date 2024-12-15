@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+    <form method="post" class="shadow-lg p-5 bg-white rounded">
+        <h1 class="text-center mb-4">{{type}}</h1>
+        {% csrf_token %}
+        <!-- {{form|crispy}} -->
+
+        {% for i in form %}
+        <div class="mb-3">
+        {{ i.label_tag }}
+        {{i}}
+        {{i.errors | striptags}}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
+    </form>
+</div>
+{% endblock %}
