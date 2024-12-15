@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-pzoo59w=l2z3aj6rf8fd0-qfack6=^80gsug^0joftwy0pveka
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bookhaven-rgyb.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['bookhaven-rgyb.onrender.com', '127.0.0.1', 'localhost', 'bookhaven-1.onrender.com']
 
 
 # Application definition
